@@ -5,7 +5,7 @@ import java.util.List;
 import com.learn.Ecommerce.Dto.UserDto;
 import com.learn.Ecommerce.entity.User;
 
-public interface UserService {
+public interface UserService  {
 	
 	// To add user
 	UserDto addUser(UserDto userDto);
