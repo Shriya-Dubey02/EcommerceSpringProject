@@ -1,7 +1,9 @@
 package com.learn.Ecommerce.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,14 +37,20 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDto> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> users = userRepository.findAll();
+		// we cannot convert list of objects to dto so we called map. It will got to every object and convert it
+		// return mai we don't want stream so collect is used
+		List<UserDto> userDtoList = users.stream().map(u->entityToDto(u)).collect(Collectors.toList());
+		
+		return userDtoList;
 	}
 
 	@Override
 	public UserDto getUserById(String Id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		// it gives optinal return type but we want user so we will throw an exception
+		User user=userRepository.findById(Id).orElseThrow(()->new RuntimeException(Id +" not found"));
+		return entityToDto(user);
 	}
 
 	@Override
@@ -52,9 +60,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String deleteUser(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public String deleteUser(String Id) {
+		User user=userRepository.findById(Id).orElseThrow(()->new RuntimeException(Id+ " not found") );
+		
+		userRepository.delete(user);
+		return user.getId()+"deleted successfully";
 	}
 
 	@Override
