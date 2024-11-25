@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserDto> getAllUsers() {
 		List<User> users = userRepository.findAll();
-		// we cannot convert list of objects to dto so we called map. It will got to every object and convert it
+		// we cannot convert list of objects to dto so we called map. It will go to every object and convert it
 		// return mai we don't want stream so collect is used
 		List<UserDto> userDtoList = users.stream().map(u->entityToDto(u)).collect(Collectors.toList());
 		
@@ -55,8 +55,18 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto updateUser(String id, UserDto userDto) {
-		// TODO Auto-generated method stub
-		return null;
+		User user=userRepository.findById(id).orElseThrow(()->new RuntimeException(id+" not found"));
+		
+		user.setFirstName(userDto.getFirstName());
+		user.setLastName(userDto.getLastName());
+		user.setEmailId(userDto.getEmailId());
+		user.setAge(userDto.getAge());
+		user.setPassword(userDto.getPassword());
+		
+		// saves the user in the database
+		User updateUser=userRepository.save(user);
+		
+		return entityToDto(updateUser) ;
 	}
 
 	@Override
