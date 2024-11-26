@@ -28,7 +28,7 @@ public class UserController {
 UserService userService;	
 	
 // POST ["/users"] To add user
-@PostMapping
+@PostMapping // valid is used to not allow null values
 public ResponseEntity<UserDto> addUser(@RequestBody @Valid UserDto userDto)
 {
 	UserDto savedUser= userService.addUser(userDto);
