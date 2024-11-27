@@ -1,5 +1,7 @@
 package com.learn.Ecommerce.Dto;
 
+import com.learn.Ecommerce.validators.PasswordMatch;
+
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -14,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@PasswordMatch
 public class UserDto {
 	
 	private String id;
