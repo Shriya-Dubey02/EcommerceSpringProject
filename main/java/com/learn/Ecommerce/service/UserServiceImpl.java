@@ -3,6 +3,7 @@ package com.learn.Ecommerce.service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -104,6 +105,25 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	// Implementation class of userService
+	
+	
+
+	@Override
+	public UserDto getUserByEmail(String email) 
+	{
+		User user= userRepository.findByEmailId(email).orElseThrow(()->new RuntimeException(email+" not found"));
+		return entityToDto(user);
+	}
+
+	@Override
+	public List<UserDto> getuserByFirstName(String firstName) {
+		List<User> users= userRepository.findByFirstName(firstName);
+		List<UserDto> userDtolist=users.stream().map(u->entityToDto(u)).collect(Collectors.toList());
+		return userDtolist;
+	}
+
+	
+	
 	
 
 }

@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learn.Ecommerce.Dto.UserDto;
 import com.learn.Ecommerce.service.UserService;
+import com.learn.Ecommerce.service.UserServiceImpl;
 
 import jakarta.validation.Valid;
 
@@ -71,4 +73,16 @@ public ResponseEntity<UserDto> updateUser(@PathVariable String id, @RequestBody 
 
 }
 
+@GetMapping("find-by-email/{emailId}")
+public ResponseEntity<UserDto> getUserByemail(@PathVariable String emailId)
+{
+	// UserDto userdto= userService.getUserByEmail(email);
+	return new ResponseEntity<UserDto>(userService.getUserByEmail(emailId),HttpStatus.FOUND);
+}
+
+@GetMapping("find-by-firstname")
+public ResponseEntity<List<UserDto>> getUsersByFirstName(@RequestParam String fname)
+{
+	return new ResponseEntity<List<UserDto>>(userService.getuserByFirstName(fname),HttpStatus.FOUND);
+}
 }
