@@ -3,33 +3,35 @@ package com.learn.Ecommerce.entity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Entity
+public class Address {
 	
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int addressId;
 	@Column(nullable = false)
-	private String firstName;
+	private String addressLine1;
 	@Column(nullable = false)
-	private String lastName;
-	@Column(nullable = false, unique = true)
-	private String emailId;
+	private String addressLine2;
 	@Column(nullable = false)
-	private String password;
+	private String city;
 	@Column(nullable = false)
-	private int age;
+	private String state;
+	@Column(nullable = false)
+	private int pincode;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Address address;
-	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "address")
+    private User user; 
 
 }

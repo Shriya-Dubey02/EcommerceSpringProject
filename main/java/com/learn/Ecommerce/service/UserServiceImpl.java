@@ -88,6 +88,7 @@ public class UserServiceImpl implements UserService {
 		userdto.setEmailId(user.getEmailId());
 		userdto.setAge(user.getAge());
 		userdto.setPassword(user.getPassword());
+		userdto.setAddress(user.getAddress());
 		return userdto;
 	}
 
@@ -101,6 +102,7 @@ public class UserServiceImpl implements UserService {
 		user.setEmailId(UserDto.getEmailId());
 		user.setAge(UserDto.getAge());
 		user.setPassword(UserDto.getPassword());
+		user.setAddress(UserDto.getAddress());
 		
 		return user;
 	}
