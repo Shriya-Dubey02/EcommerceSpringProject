@@ -28,7 +28,7 @@ public class UserController {
 
 @Autowired	
 UserService userService;	
-	
+// response entity	
 // POST ["/users"] To add user
 @PostMapping // valid is used to not allow null values
 public ResponseEntity<UserDto> addUser(@RequestBody @Valid UserDto userDto)
