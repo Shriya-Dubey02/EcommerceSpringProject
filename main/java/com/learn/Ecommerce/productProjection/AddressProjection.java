@@ -1,7 +1,7 @@
 package com.learn.Ecommerce.productProjection;
 
 import org.springframework.beans.factory.annotation.Value;
-
+// Projection
 public interface AddressProjection {
 	
 	String getCity();
