@@ -1,6 +1,7 @@
 package com.learn.Ecommerce.entity;
 
 
+
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Category {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.UUID)
 	private String categoryId;
 	@Column(nullable= false)
 	private String categoryName;
